@@ -1,0 +1,1295 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'swiper/css';
+
+@import 'fonts.scss';
+@import 'components.scss';
+@import 'node-snackbar/dist/snackbar.min.css';
+
+// MAIN PAGE
+
+.nav {
+    @apply flex items-center justify-between py-5;
+    &-logo {
+        img {
+            @apply w-20 lg:w-[110px];
+        }
+    }
+    &-menu {
+        @apply flex flex-col lg:flex-row items-center absolute lg:relative top-[75px] lg:top-auto -left-full lg:left-auto w-full lg:w-auto h-full lg:h-auto bg-primary lg:bg-transparent z-50 lg:z-auto pt-12 lg:pt-0 opacity-0 lg:opacity-100 invisible lg:visible transition-all duration-300 ease-linear;
+        li {
+            @apply relative mr-0 lg:mr-7 mb-5 md:mb-10 lg:mb-0 text-2xl md:text-3xl lg:text-base text-secondary;
+            &:last-child {
+                @apply mr-0 mb-0;
+            }
+            &:hover {
+                .nav-categories {
+                    @apply opacity-100 visible transition-all duration-300 ease-linear;
+                }
+            }
+        }
+        &.show {
+            @apply opacity-100 left-0 visible transition-all duration-300 ease-linear;
+        }
+    }
+    &-categories {
+        @apply hidden lg:block absolute top-14 left-1/2 -translate-x-1/2 bg-primary p-7 w-max z-10 opacity-0 invisible transition-all duration-300 ease-linear;
+        &:before {
+            @apply content-[''] absolute top-0 left-0 w-full h-[3px] bg-secondary;
+        }
+        &:after {
+            @apply content-[url(/img/icons/nav-categ.svg)] absolute -top-1.5 left-1/2 -translate-x-1/2;
+        }
+        li {
+            @apply text-secondary mb-2.5;
+            &:last-child {
+                @apply mb-0;
+            }
+        }
+    }
+    &-btns {
+        @apply flex items-center justify-center lg:justify-normal absolute lg:relative bottom-0 lg:bottom-auto -left-full lg:left-auto w-full lg:w-auto px-5 sm:px-10 lg:px-0 py-10 sm:py-12 lg:py-0 border-t border-secondary lg:border-none z-50 lg:z-auto opacity-0 lg:opacity-100 invisible lg:visible transition-all duration-300 ease-linear;
+        ul {
+            @apply flex items-center justify-between lg:justify-normal w-full lg:w-auto max-w-md lg:max-w-full;
+            li {
+                @apply mr-4 flex;
+                &:last-child {
+                    @apply mr-0;
+                }
+                img {
+                    @apply w-9 lg:w-6;
+                }
+                button, a {
+                    @apply relative;
+                }
+            }
+        }
+        &.show {
+            @apply opacity-100 left-0 visible transition-all duration-300 ease-linear;
+        }
+    }
+}
+
+.hero {
+    @apply w-full h-[70vh] relative;
+    &-container {
+        @apply flex flex-col justify-center items-center w-full h-full relative;
+    }
+    .swiper {
+        @apply h-full;
+    }
+    &-img {
+        @apply absolute left-0 top-0 w-full h-full;
+        img {
+            @apply w-full h-full object-cover;
+        }
+    }
+    &-content {
+        @apply flex flex-col items-center relative z-10 text-center text-white max-w-[916px];
+        p {
+            @apply mt-7 sm:mt-10 mb-12 max-w-[425px];
+        }
+    }
+    .btn-main {
+        @apply hidden md:block;
+    }
+    &-pagination {
+        @apply absolute bottom-5 md:bottom-16 lg:bottom-10 left-0 flex justify-center w-full z-10;
+        .swiper-pagination-bullet {
+            @apply w-2 h-2 rounded-full bg-primary bg-opacity-40 mr-2 transition-all duration-300 ease-linear;
+            &:last-child {
+                @apply mr-0;
+            }
+            &-active {
+                @apply bg-opacity-100 transition-all duration-300 ease-linear;
+            }
+        }
+    }
+    .btn-navs {
+        @apply hidden md:block;
+        .btn-prev {
+            @apply absolute top-0 left-0 lg:left-5 h-full z-[1];
+        }
+        .btn-next {
+            @apply absolute top-0 right-0 lg:right-5 h-full z-[1];
+        }
+        svg {
+            @apply w-11 h-11 text-white;
+        }
+        .swiper-button-disabled {
+            @apply opacity-50;
+        }
+    }
+}
+
+.main-categories {
+    @apply mt-10 relative z-20;
+    .categories-wrapper {
+        @apply flex flex-col lg:flex-row mx-0 lg:-mx-2.5 h-auto lg:h-[630px] 2xl:h-[750px] 3xl:h-[800px];
+    }
+    .cards-wrapper {
+        @apply h-auto lg:h-3/5;
+        &-sm {
+            @apply flex flex-col lg:flex-row h-auto lg:h-2/5;
+            .card:first-child {
+                @apply mr-5;
+            }
+        }
+    }
+    .cards {
+        @apply w-auto lg:w-[calc(50%-20px)] mx-0 lg:mx-2.5;
+        &:first-child {
+            .cards-wrapper-sm {
+                @apply mt-0 lg:mt-5;
+            }
+        }
+        &:last-child {
+            .cards-wrapper-sm {
+                @apply mb-0 lg:mb-5;
+                .card {
+                    @apply mr-0;
+                }
+            }
+        }
+    }
+    .card {
+        @apply mb-5 lg:mb-0 p-6 2xl:p-12 block relative w-full h-[320px] lg:h-full;
+        &:hover {
+            .icon-circle {
+                @apply opacity-0 invisible transition-all duration-300 ease-linear;
+            }
+            .icon-circle-filled {
+                @apply opacity-100 visible transition-all duration-300 ease-linear;
+            }
+        }
+        .category-img {
+            @apply absolute right-0 bottom-0 max-w-[70%] 2xl:max-w-full max-h-[60%] sm:max-h-[80%] 2xl:max-h-[90%];
+        }
+        .icon-circle {
+            @apply absolute left-6 2xl:left-12 bottom-6 2xl:bottom-12 transition-all duration-300 ease-linear opacity-100 visible;
+        }
+        .icon-circle-filled {
+            @apply absolute left-6 2xl:left-12 bottom-6 2xl:bottom-12 transition-all duration-300 ease-linear opacity-0 invisible;
+        }
+        svg {
+            @apply absolute left-12 bottom-12 fill-transparent transition-all duration-300 ease-linear;
+            circle, path {
+                @apply stroke-accent1 transition-all duration-300 ease-linear;
+            }
+            &:hover {
+                @apply fill-accent1 transition-all duration-300 ease-linear;
+                circle, path {
+                    @apply stroke-white transition-all duration-300 ease-linear;
+                }
+            }
+        }
+        p {
+            @apply max-w-[60%] sm:max-w-[70%] 2xl:max-w-[50%] mt-5 2xl:mt-8 leading-normal 2xl:leading-5 text-sm 2xl:text-base;
+        }
+    }
+}
+
+.products-wrapper {
+    @apply flex -mx-1 md:-mx-2.5 overflow-hidden;
+    &-all {
+        @apply flex-wrap;
+        .card {
+            @apply mb-10;
+        }
+    }
+    .catalog-product-card {
+        @apply w-[calc(50%-8px)] md:w-[calc(50%-20px)] lg:w-[calc(100%/3-20px)] xl:w-[calc(25%-20px)] 2xl:w-[calc(20%-20px)] mx-1 md:mx-2.5 p-2.5;
+        &-img {
+            @apply block h-auto;
+        }
+        img {
+            @apply mx-auto w-auto md:w-4/5;
+        }
+        h5 {
+            @apply mt-5 mb-2.5 h-10 font-normal;
+            &:hover {
+                @apply text-accent2 transition-all duration-300 ease-linear;
+            }
+            a {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        }
+        .btns-group {
+            @apply mt-5;
+            .btn-main {
+                @apply w-full whitespace-nowrap py-3 2xl:py-4 px-4 2xl:px-8 text-sm 2xl:text-base;
+            }
+            .btn-icon {
+                @apply py-3 2xl:py-4 px-2 2xl:px-6;
+            }
+        }
+    }
+}
+
+.product-card {
+    @apply p-2.5;
+    .card-img {
+        @apply block h-auto;
+    }
+    img {
+        @apply mx-auto w-auto md:w-4/5;
+    }
+    h5 {
+        @apply mt-5 mb-2.5 h-10 font-normal;
+        &:hover {
+            @apply text-accent2 transition-all duration-300 ease-linear;
+        }
+        a {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+    .btns-group {
+        @apply mt-5;
+        .btn-main {
+            @apply w-full whitespace-nowrap py-3 2xl:py-4 px-4 2xl:px-8 text-sm 2xl:text-base;
+        }
+        .btn-icon {
+            @apply py-3 2xl:py-4 px-2 2xl:px-6;
+        }
+    }
+}
+
+.sets {
+    .wrapper {
+        @apply flex flex-wrap mx-0 md:-mx-2.5;
+        &-base {
+            @apply w-full mb-0 md:mb-5;
+            .set {
+                @apply w-full md:w-1/2 mr-0 md:mr-5;
+                &:last-child {
+                    @apply mr-0;
+                }
+            }
+        }
+        &-sm {
+            @apply w-full ;
+            .set {
+                @apply w-full md:w-1/3 mr-0 md:mr-5;
+                &:last-child {
+                    @apply mr-0;
+                }
+            }
+        }
+    }
+}
+
+.set {
+    @apply relative h-[230px] md:h-[260px] xl:h-[300px] 2xl:h-[400px] mb-5 w-full md:w-[calc(100%/3-20px)] mr-0 md:mr-5;
+    &:hover {
+        .card {
+            @apply bg-secondary transition-all duration-300 ease-linear;
+            svg {
+                path {
+                    @apply stroke-white transition-all duration-300 ease-linear;
+                }
+            }
+            h4, p, span {
+                @apply text-white transition-all duration-300 ease-linear;
+            }
+        }
+    }
+    &-big {
+        @apply w-full md:w-[calc(50%-20px)];
+    }
+    img {
+        @apply rounded-xl w-full h-full object-cover;
+    }
+    h4 {
+        @apply text-lg md:text-base lg:text-lg 2xl:text-xl 3xl:text-[26px] transition-all duration-300 ease-linear;
+    }
+    .card {
+        @apply py-5 3xl:py-8 px-6 3xl:px-9 flex justify-between absolute bottom-0 left-0 w-full items-center transition-all duration-300 ease-linear;
+    }
+}
+
+.info {
+    .swiper {
+        &-slide {
+            @apply h-auto;
+        }
+    }
+    .card {
+        @apply py-[60px] flex justify-center h-full bg-white transition-all duration-300 ease-linear;
+        &-content {
+            @apply flex flex-col items-center max-w-[325px] md:max-w-[273px] text-center;
+        }
+        p {
+            @apply text-base md:text-lg leading-5 font-medium text-secondary tracking-[-0.02em] transition-all duration-300 ease-linear;
+        }
+        .img-box {
+            @apply w-[90px] h-[90px] rounded-lg flex justify-center items-center bg-secondary mb-9 transition-all duration-300 ease-linear;
+            svg {
+                path {
+                    @apply fill-white transition-all duration-300 ease-linear;
+                }
+            }
+        }
+        &:hover {
+            @apply bg-secondary transition-all duration-300 ease-linear;
+            p {
+                @apply text-white transition-all duration-300 ease-linear;
+            }
+            .img-box {
+                @apply bg-white transition-all duration-300 ease-linear;
+                svg {
+                    path {
+                        @apply fill-secondary transition-all duration-300 ease-linear;
+                    }
+                }
+            }
+        }
+    }
+    &-desc {
+        @apply text-center flex flex-col items-center;
+        p {
+            @apply mb-5 md:mb-8 text-sm font-normal max-w-full md:max-w-[90%];
+            span {
+                @apply hidden lg:inline;
+            }
+        }
+        .link-underline {
+            @apply text-sm;
+            &.hidden-btn {
+                @apply hidden;
+            }
+        }
+        .hidden-text {
+            @apply hidden;
+            &.show {
+                @apply inline;
+            }
+        }
+    }
+}
+
+.footer {
+    @apply bg-secondary pt-12 lg:pt-20;
+    &-main {
+        @apply flex flex-col lg:flex-row w-full mb-5 md:mb-10 lg:mb-20;
+    }
+    &-logo {
+        @apply w-full lg:w-1/4 2xl:w-1/3 mb-10 lg:mb-0 flex lg:block justify-center;
+        a {
+            @apply block w-fit;
+        }
+        img {
+            @apply w-[155px] 2xl:w-[165px];
+        }
+    }
+    .wrapper {
+        @apply w-full lg:w-3/4 2xl:w-2/3 ml-0 lg:ml-14 2xl:ml-0;
+    }
+    &-content {
+        @apply w-full md:w-1/3 pr-0 md:pr-5 border-b border-gray-600 md:border-none;
+        ul {
+            li {
+                @apply text-sm md:text-base text-primary mb-2.5 opacity-60 md:opacity-100;
+                &:last-child {
+                    @apply mb-0;
+                }
+                a {
+                    @apply transition-all duration-300 ease-linear;
+                    &:hover {
+                        @apply text-accent2 transition-all duration-300 ease-linear;
+                    }
+                }
+                p {
+                    @apply mt-7;
+                }
+                br {
+                    @apply hidden md:block;
+                }
+            }
+        }
+    }
+    .btn-accordion {
+        @apply cursor-pointer lg:cursor-default w-full sm:w-1/2 md:w-auto text-white mb-0 md:mb-8 py-4 md:py-0;
+        img {
+            @apply block md:hidden;
+        }
+    }
+    .hidden-content {
+        li:last-child {
+            @apply mb-5 md:mb-0;
+        }
+    }
+    .social-bar {
+        @apply mt-8;
+        li {
+            @apply mb-0;
+            &:last-child {
+                @apply mb-0;
+            }
+        }
+    }
+    .subscribe {
+        @apply mt-10 max-w-full md:max-w-[285px] hidden lg:block;
+        h5 {
+            @apply text-white leading-5;
+        }
+        .input-item {
+            @apply mt-4 md:mt-5;
+        }
+        .input {
+            @apply text-accent1 bg-white p-5 text-base leading-5;
+        }
+        &-mobile {
+            @apply block md:hidden;
+        }
+    }
+    &-policy {
+        @apply py-5 border-t border-primary;
+        &-container {
+            @apply flex flex-col lg:flex-row justify-normal lg:justify-between w-full text-primary text-opacity-80 text-sm;
+        }
+        .policy-links {
+            @apply mt-2.5 lg:mt-0 flex items-start lg:items-center flex-col lg:flex-row;
+            li {
+                @apply mr-0 lg:mr-11 mb-2.5 lg:mb-0 transition-all duration-300 ease-linear;
+                &:last-child {
+                    @apply mr-0 mb-0;
+                }
+                &:hover {
+                    @apply text-accent2 transition-all duration-300 ease-linear;
+                }
+            }
+        }
+    }
+}
+
+
+// CATEGORY AND SUBCATEGORY PAGES
+
+.category-page {
+    .wrapper-base {
+        @apply mb-0 mt-0 md:mt-5;
+    }
+    .pages-pagination {
+        @apply mt-8;
+    }
+    .set {
+        @apply block;
+    }
+}
+
+.subcategory-page {
+    .title-btn {
+        @apply flex-wrap lg:flex-nowrap;
+        h2 {
+            @apply w-full lg:flex-auto mb-9 lg:mb-0;
+        }
+        .filter-btn {
+            @apply block lg:hidden px-5 py-3.5 text-sm leading-[17.5px] h-[50px];
+        }
+    }
+}
+
+.sort {
+    @apply flex items-center flex-wrap xs:flex-nowrap;
+    span {
+        @apply mr-2.5 md:mr-4 text-sm;
+    }
+    .select-item {
+        @apply mr-2.5 lg:mr-0;
+    }
+    .btn {
+        @apply w-full xs:w-auto mt-2.5 xs:mt-0;
+    }
+}
+
+.filter-item {
+    @apply relative text-secondary mb-4 rounded-lg;
+    .select-btn {
+        @apply relative pl-3.5 pr-10 py-4 border-none bg-white rounded-none text-base lg:text-sm 2xl:text-base;
+    }
+    .options-filter {
+        @apply hidden pt-1.5 pb-4 px-4 bg-white;
+        &.show {
+            @apply block;
+        }
+    }
+    .input-group {
+        @apply mt-4;
+        span {
+            @apply mx-1.5;
+        }
+    }
+    .input {
+        @apply w-1/2 py-3.5 px-2.5;
+    }
+    .checkbox-item {
+        @apply mb-2.5;
+        &:last-child {
+            @apply mb-0;
+        }
+    }
+}
+
+.products-filters {
+    @apply flex w-full;
+    .filters-container {
+        @apply w-full lg:w-1/4 xl:w-1/5 h-full lg:h-auto fixed lg:relative top-0 lg:top-auto left-0 lg:left-auto bg-primary lg:bg-transparent py-[50px] px-5 lg:py-0 lg:px-0 -translate-y-full lg:translate-y-0 opacity-0 lg:opacity-100 invisible lg:visible transition-all duration-300 ease-linear;
+        &.show {
+            @apply translate-y-0 opacity-100 visible transition-all duration-300 ease-linear;
+        }
+        .filters {
+            @apply w-full max-w-xl lg:max-w-full overflow-y-auto h-full lg:h-auto pb-10 lg:pb-0;
+        }
+        h3 {
+            @apply block lg:hidden mb-9;
+        }
+        .btn-close-filters {
+            @apply block lg:hidden absolute right-5 top-5;
+        }
+    }
+    .products-container {
+        @apply w-full lg:w-3/4 xl:w-4/5 ml-0 lg:ml-5 2xl:ml-12;
+        .card {
+            @apply w-[calc(50%-8px)] md:w-[calc(50%-20px)] lg:w-[calc(100%/3-20px)] xl:w-[calc(25%-20px)];
+            .btn-main {
+                @apply py-3 2xl:py-4 px-4 2xl:px-8 text-sm 2xl:text-base;
+            }
+            .btn-icon {
+                @apply py-3 2xl:py-4 px-2 2xl:px-6;
+            }
+        }
+    }
+}
+
+
+// PRODUCT PAGE
+
+.product-slider {
+    @apply w-full lg:w-1/2;
+    .main-swiper {
+        @apply max-w-[428px] lg:max-w-full h-[430px] lg:h-[550px] xl:h-[490px] 2xl:h-[750px];
+    }
+    .thumbs-swiper {
+        @apply max-w-[428px] lg:max-w-full h-20 md:h-[90px] lg:h-[100px] mt-5;
+        .product-img {
+            @apply cursor-grab;
+        }
+        .swiper-slide-thumb-active {
+            .product-img {
+                @apply border-secondary;
+            }
+        }
+    }
+    .product-img {
+        @apply bg-white border border-accent2 rounded-xl w-full h-full;
+    }
+    img {
+        @apply w-full h-full object-contain rounded-xl;
+    }
+    .navs {
+        @apply absolute left-0 top-1/2 -translate-y-1/2 w-full z-10;
+        .btn-prev {
+            @apply absolute left-2.5 cursor-pointer select-none;
+        }
+        .btn-next {
+            @apply absolute right-2.5 cursor-pointer select-none;
+        }
+    }
+}
+
+.product-page {
+    @apply flex flex-col lg:flex-row;
+    .title {
+        @apply pb-5 border-b border-accent2 mb-6 md:mb-12;
+        h1 {
+            @apply 2xl:text-5xl md:text-4xl text-3xl;
+        }
+        span {
+            @apply mt-5 md:mt-10 block;
+        }
+    }
+    .product-info {
+        @apply w-full lg:w-1/2 pl-0 lg:pl-10 xl:pl-[60px] mt-9 lg:mt-0;
+    }
+    .price {
+        @apply items-end;
+    }
+    .price-new {
+        @apply text-2xl md:text-3xl font-medium leading-5;
+    }
+    .price-old {
+        @apply text-sm md:text-base ml-5 leading-4;
+    }
+    .complect {
+        @apply mt-6 md:mt-12;
+        ul {
+            @apply text-accent1 pl-5 list-disc;
+            li {
+                @apply mb-2.5;
+                &:last-child {
+                    @apply mb-0;
+                }
+            }
+        }
+        &-hidden {
+            @apply hidden mt-2.5;
+            &.show {
+                @apply block;
+            }
+        }
+        .link-underline {
+            @apply mt-5 ml-5;
+        }
+    }
+    .available {
+        @apply mt-7 md:mt-12;
+    }
+    .btns-group {
+        @apply mt-5;
+        .btn {
+            @apply py-3.5 md:py-4 px-6 md:px-8;
+        }
+    }
+    .counter {
+        @apply mr-2.5 sm:mr-5;
+    }
+}
+
+.product-desc {
+    .selection {
+        @apply rounded-none border-r-0;
+        &:first-child {
+            @apply rounded-tl-lg rounded-bl-lg;
+        }
+        &:last-child {
+            @apply rounded-tr-lg rounded-br-lg border-r;
+        }
+    }
+    .desc-item {
+        @apply hidden flex-col lg:flex-row;
+        &.show {
+            @apply flex;
+        }
+    }
+    &-wrapper {
+        @apply mt-6 md:mt-10;
+    }
+    .desc-container {
+        @apply w-full lg:w-1/2 mr-0 lg:mr-5;
+        h5 {
+            @apply text-lg;
+        }
+    }
+    .card {
+        @apply p-6 md:p-10 mb-5;
+    }
+    .desc-list {
+        @apply mt-6;
+        li {
+            @apply flex items-center py-4 border-b border-accent2 text-accent1;
+            p {
+                @apply font-medium w-1/2;
+            }
+            span {
+                @apply text-sm pl-5 w-1/2;
+            }
+        }
+    }
+    .video-container {
+        @apply w-full lg:w-3/5;
+    }
+}
+
+.alsoProducts {
+    .title {
+        @apply mb-9 lg:mb-16;
+    }
+}
+
+// SALES PAGE
+
+.sales {
+    .title {
+        @apply mb-10;
+    }
+    &-container {
+        @apply mt-14;
+    }
+    .selection {
+        @apply mr-2.5 md:mr-5;
+        &:last-child {
+            @apply mr-0;
+        }
+    }
+    &-wrapper {
+        @apply hidden w-full flex-wrap lg:-mx-2.5 mx-0;
+        &.show {
+            @apply flex;
+        }
+    }
+    .card-inner {
+        @apply w-[calc(100%-20px)];
+    }
+    .set {
+        @apply h-[400px] 2xl:h-[480px] 3xl:h-[550px] w-full lg:w-[calc(50%-20px)] lg:mx-2.5 mx-0 mb-5;
+        p {
+            @apply block mt-3 2xl:mt-5 text-sm 2xl:text-base;
+        }
+    }
+}
+
+
+// CART PAGE
+
+.cart {
+    &-empty {
+        .btn {
+            @apply mt-14 block w-fit;
+        }
+    }
+    &-wrapper {
+        @apply mb-[100px];
+        .card {
+            @apply relative mb-5 flex items-center justify-between px-5 lg:px-10 py-2.5;
+            &-container {
+                @apply flex items-center w-full;
+            }
+            &-img {
+                @apply max-w-[120px] lg:max-w-[160px] w-full mr-7;
+            }
+            &-desc {
+                @apply w-full flex items-start md:items-center flex-col md:flex-row;
+            }
+            &-title {
+                @apply w-[90%] md:w-[28%] xl:w-[34%];
+                h5 {
+                    @apply mb-5;
+                }
+                span {
+                    @apply text-sm text-accent2;
+                }
+            }
+            .counter {
+                @apply mx-0 md:mx-12 mt-6 md:mt-0 py-4 bg-primary h-fit;
+            }
+            .price {
+                @apply flex-col lg:flex-row items-end absolute md:relative right-2.5 md:right-auto bottom-5 md:bottom-auto;
+                &-new {
+                    @apply text-base md:text-lg;
+                }
+                &-old {
+                    @apply text-sm;
+                }
+            }
+            .btn-delete {
+                @apply absolute md:relative top-5 md:top-auto right-2.5 md:right-auto;
+            }
+        }
+    }
+    .payment-wrapper {
+        @apply flex flex-col lg:flex-row w-full;
+        .promocode-main {
+            @apply flex flex-col 2xl:flex-row w-full md:w-1/3 lg:w-2/5 2xl:w-1/2 mr-0 md:mr-5 2xl:mr-0;
+        }
+        .card {
+            @apply w-full 2xl:w-1/2 mb-2.5 lg:mb-5 2xl:mb-0 p-5 md:p-10 h-fit mr-0 2xl:mr-5;
+            h5 {
+                @apply mb-5;
+            }
+            p {
+                a {
+                    @apply inline;
+                }
+            }
+        }
+        p {
+            @apply text-sm;
+        }
+        .total {
+            .card {
+                @apply w-full mb-7;
+            }
+        }
+    }
+}
+
+.total {
+    @apply w-full md:w-2/3 2xl:w-1/2;
+    .card {
+        @apply w-full mb-7;
+    }
+    ul {
+        @apply pb-5 border-b border-accent2 text-sm;
+        li {
+            @apply flex justify-between w-full mb-4;
+            &:last-child {
+                @apply mb-0;
+            }
+            p {
+                @apply text-accent1;
+            }
+            span {
+                @apply text-accent2;
+            }
+        }
+    }
+    &-price {
+        @apply flex justify-between items-end mt-7;
+        h5 {
+            @apply mb-0;
+        }
+    }
+    .btns-group {
+        @apply mt-7 justify-between flex-col md:flex-row;
+        .btn {
+            @apply whitespace-nowrap text-sm lg:text-base py-3 lg:py-4 px-7 lg:px-8 w-fit md:w-auto;
+        }
+        .btn-main {
+            @apply mb-2.5 md:mb-0;
+        }
+    }
+}
+
+.promocode-form {
+    .input {
+        @apply my-5;
+    }
+}
+
+
+// CHECKOUT PAGE
+
+.checkout {
+    @apply pt-12 md:pt-14;
+    &-wrapper {
+        @apply flex flex-col lg:flex-row;
+    }
+    &-info {
+        @apply w-full lg:w-1/2 2xl:w-2/5 mt-20 lg:mt-0;
+    }
+    &-group {
+        @apply mb-14;
+    }
+    &-form {
+        @apply w-full lg:w-1/2 2xl:w-3/5 mr-0 lg:mr-10 xl:mr-20 3xl:mr-36;
+        h3 {
+            @apply mb-7;
+        }
+        .select-item {
+            @apply w-full mb-2.5 md:mb-5;
+            .options {
+                @apply bg-primary top-[46px];
+            }
+        }
+        .input-group {
+            @apply items-start mb-5;
+            &:last-child {
+                @apply mb-0;
+            }
+            label {
+                @apply ml-2.5;
+            }
+            span {
+                @apply text-accent1;
+            }
+        }
+        .btns-group {
+            @apply flex w-full;
+            .btn {
+                @apply w-1/2 mr-2.5 sm:mr-5 flex items-center justify-center px-0;
+                &:last-child {
+                    @apply mr-0;
+                }
+                svg {
+                    @apply sm:ml-5 ml-2.5;
+                }
+                &:hover {
+                    path {
+                        @apply stroke-white transition-all duration-300 ease-linear;
+                    }
+                }
+            }
+        }
+    }
+    .card {
+        @apply p-5 md:p-10;
+        h5 {
+            @apply mb-7;
+        }
+    }
+    .total {
+        @apply w-full mt-5;
+        &-price {
+            h5 {
+                @apply mb-0;
+            }
+        }
+    }
+}
+
+.product-item {
+    @apply flex justify-between px-2.5 py-3.5;
+    .product-info {
+        @apply flex;
+        img {
+            @apply max-w-[70px] h-[70px] w-full;
+        }
+    }
+    .product-content {
+        @apply ml-2.5 w-[70%];
+        p {
+            @apply text-accent1 mb-1.5 leading-5;
+        }
+        span {
+            @apply text-accent2 text-sm leading-4;
+        }
+    }
+    .product-price {
+        @apply font-medium text-accent1 whitespace-nowrap ml-2.5;
+    }
+}
+
+
+// CONTACTS PAGE
+
+.contacts {
+    @apply flex flex-col lg:flex-row;
+    &-content {
+        @apply w-full lg:w-2/5 2xl:w-1/4 mr-5;
+        .card {
+            @apply p-5 md:p-10 mb-5;
+            h5 {
+                @apply mb-6;
+            }
+            .link, span, p {
+                @apply text-sm text-accent1;
+            }
+            p {
+                @apply mb-2;
+                &:last-child {
+                    @apply mb-0;
+                }
+            }
+        }
+    }
+    &-main {
+        @apply w-full lg:w-3/5 2xl:w-3/4;
+    }
+    &-map {
+        @apply w-full h-[400px] md:h-[600px] lg:h-[800px];
+        iframe {
+            @apply w-full h-full rounded-xl;
+        }
+    }
+    &-feed {
+        @apply w-full max-w-full lg:max-w-[750px];
+        h2 {
+            @apply mb-10;
+        }
+    }
+    &-form {
+        @apply mt-14;
+        .btn {
+            @apply mt-14;
+        }
+    }
+}
+
+
+// SUPPORT
+
+.support, .cabinet {
+    &-main {
+        @apply flex flex-col lg:flex-row w-full;
+    }
+    &-container {
+        @apply w-full lg:w-2/3 ml-0 lg:ml-10 xl:ml-20 2xl:ml-36;
+    }
+    .support-container {
+        @apply w-full lg:w-2/3 3xl:w-1/2;
+    }
+    .addresses {
+        &-container {
+            @apply flex w-full md:w-[calc(50%-20px)] mx-0 md:mx-2.5 mb-5;
+        }
+        .card-wrapper {
+            @apply flex flex-col md:flex-row md:-mx-2.5 mx-0 flex-wrap;
+            .card {
+                @apply w-full p-5 lg:p-10;
+                &:last-child {
+                    @apply mr-0 mb-0;
+                }
+                h5 {
+                    @apply mb-6;
+                }
+                p {
+                    @apply text-sm text-accent1;
+                }
+                .btns-group {
+                    @apply mt-9 items-center;
+                    button {
+                        @apply flex items-center mr-7;
+                        &:last-child {
+                            @apply mr-0;
+                        }
+                        img {
+                            @apply mr-1.5;
+                        }
+                    }
+                    .link-underline {
+                        @apply text-secondary h-auto;
+                    }
+                }
+                &-address {
+                    @apply flex flex-col justify-center items-center;
+                }
+            }
+        }
+        .add-address {
+            @apply hidden flex-col justify-center items-center text-lg font-medium;
+            &.show {
+                @apply flex;
+            }
+            img {
+                @apply mb-7;
+            }
+        }
+        .edit-address {
+            @apply hidden flex-col justify-center;
+            &.show {
+                @apply flex;
+            }
+        }
+        .edit-form, .add-form {
+            @apply hidden;
+            &.show {
+                @apply block;
+            }
+        }
+    }
+    &-wrapper {
+        // @apply hidden;
+        // &.show {
+        //     @apply block;
+        // }
+        h2 {
+            @apply mb-9 md:mb-14;
+        }
+        h3 {
+            @apply mb-10;
+        }
+    }
+    &-content {
+        @apply mb-14 text-accent1;
+        ul {
+            @apply pl-5 list-disc mb-10 mt-5;
+            li {
+                @apply mb-2.5;
+                &:last-child {
+                    @apply mb-0;
+                }
+            }
+        }
+        .card-wrapper {
+            @apply flex w-full flex-col md:flex-row;
+            .card {
+                @apply w-full md:w-1/2 mr-0 md:mr-5;
+                &:last-child {
+                    @apply mr-0;
+                }
+            }
+        }
+        .card {
+            @apply my-5 p-5 lg:p-10;
+        }
+        .desc-list {
+            @apply mt-6 mb-0 pl-0 list-none;
+            li {
+                @apply flex items-center py-4 border-b border-accent2 text-accent1;
+                p {
+                    @apply font-medium w-1/2;
+                }
+                span {
+                    @apply text-sm pl-5 w-1/2;
+                }
+            }
+        }
+    }
+    .title {
+        @apply pb-5 border-b border-accent2 mb-9 md:mb-14;
+        h2 {
+            @apply mb-6 md:mb-10;
+        }
+    }
+    .points {
+        @apply mb-9 md:mb-14;
+        span {
+            @apply font-medium;
+        }
+    }
+    .personal-form {
+        @apply mb-9 md:mb-14;
+        h3 {
+            @apply mb-7;
+        }
+    }
+}
+
+.aside {
+    @apply w-full lg:w-[30%] flex flex-col items-start sm:items-center lg:items-start mb-14 lg:mb-0;
+    .selections {
+        @apply flex-col w-full max-w-lg lg:max-w-full;
+    }
+    .selection {
+        @apply max-w-lg lg:max-w-full rounded-none border-b-0 text-left sm:text-center lg:text-left;
+        &:first-child {
+            @apply rounded-tl-lg rounded-tr-lg;
+        }
+        &:last-child {
+            @apply rounded-bl-lg rounded-br-lg border-b;
+        }
+    }
+}
+
+
+// CABINET
+
+.modal-address {
+    .address-form {
+        @apply bg-white rounded-[20px] p-10 max-w-xl;
+    }
+    .btns-group {
+        @apply mt-10;
+    }
+    .btn-main {
+        @apply mr-5;
+    }
+}
+
+.orders {
+    @apply hidden md:block border border-accent2;
+    &-mobile {
+        @apply block md:hidden;
+        .card {
+            @apply p-6 mb-2.5;
+            &:last-child {
+                @apply mb-0;
+            }
+        }
+        .order-title {
+            @apply w-full mb-6;
+            h5 {
+                @apply text-lg;
+            }
+        }
+        ul {
+            @apply mb-6 text-accent1 text-sm;
+            li {
+                @apply mb-3.5;
+                &:last-child {
+                    @apply mb-0;
+                }
+            }
+        }
+        .link-underline {
+            @apply text-sm leading-[1.7];
+        }
+    }
+}
+
+.order {
+    @apply flex w-full py-7 px-4 2xl:px-7;
+    &-header {
+        @apply flex w-full py-7 bg-primary px-4 2xl:px-7 rounded-tl-xl rounded-tr-xl;
+    }
+    &-title {
+        @apply w-1/5 text-lg font-medium;
+    }
+    &-info {
+        @apply w-1/5 text-accent1 text-sm;
+        &.completed {
+            @apply text-success;
+        }
+        &.canceled {
+            @apply text-error;
+        }
+    }
+    p {
+        @apply tracking-[-0.03em];
+    }
+    .open-modal {
+        @apply underline;
+        &:hover {
+            @apply no-underline;
+        }
+    }
+}
+
+
+// SEARCH PAGE
+
+.searchPage {
+    h2 {
+        @apply mb-10;
+    }
+    .products-container {
+        @apply mt-10 md:mt-14;
+    }
+}
+
+
+// 404 PAGE
+
+.errorPage {
+    @apply w-full h-screen flex flex-col items-center justify-center text-white bg-404page;
+    h1 {
+        @apply text-center max-w-[256px] md:max-w-full;
+    }
+    p {
+        @apply mt-6 md:mt-10 mb-9 md:mb-12 text-sm md:text-base max-w-[625px] text-center;
+    }
+}
+
+
+// NOTIFICATION
+
+.notification-bar {
+    p {
+        font-weight: 600!important;
+    }
+    &-error {
+        @apply bg-white;
+        p {
+            @apply text-error text-lg font-medium;
+            font-weight: 600!important;
+        }
+    }
+    &-success {
+        @apply bg-white;
+        p {
+            @apply text-success text-lg font-medium;
+            font-weight: 600!important;
+        }
+    }
+    &-warning {
+        @apply bg-white;
+        p {
+            @apply text-orange-500 text-lg font-medium;
+            font-weight: 600!important;
+        }
+    }
+}
+
+// LOGIN PAGE
+
+.page-container {
+    @apply flex justify-center w-full h-full p-20;
+}
